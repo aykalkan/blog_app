@@ -1,6 +1,5 @@
 import 'package:blog_app/widgets/post_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
