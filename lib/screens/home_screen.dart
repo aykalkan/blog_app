@@ -11,7 +11,6 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             "Latest Feed",
-            style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.black)
           ),
           actions: [
             FloatingActionButton(
@@ -24,12 +23,12 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
           toolbarHeight: 100,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          backwardsCompatibility: false,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-          ),
+          // backgroundColor: Colors.transparent,
+          // elevation: 0,
+          // backwardsCompatibility: false,
+          // systemOverlayStyle: SystemUiOverlayStyle(
+          //   statusBarColor: Colors.transparent,
+          // ),
         ),
         body: ListView.separated(
           itemCount: 10,
