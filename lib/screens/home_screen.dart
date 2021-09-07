@@ -11,9 +11,7 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             "Latest Feed",
-            style: TextStyle(
-              color: Colors.black,
-            ),
+            style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.black)
           ),
           actions: [
             FloatingActionButton(

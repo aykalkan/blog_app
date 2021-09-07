@@ -5,8 +5,10 @@ class PostTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.all(16),
+    return InkWell(
+      onTap: () {
+        return null;
+      },
       child: Column(
         children: [
           ListTile(
@@ -43,6 +45,9 @@ class PostTile extends StatelessWidget {
                 ClipRRect(
                   child: Image.network(
                     "https://images.unsplash.com/photo-1552229633-cbbaf48ddd4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8Mzc4MjUxMHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=416&q=60",
+                    height: 185,
+                    width: double.infinity,
+                    fit: BoxFit.fitWidth,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
