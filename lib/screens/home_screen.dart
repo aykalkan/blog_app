@@ -1,3 +1,4 @@
+import 'package:blog_app/widgets/post_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,35 +8,35 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Latest Feed",
-          style: TextStyle(
-            color: Colors.black,
+        appBar: AppBar(
+          title: Text(
+            "Latest Feed",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+          actions: [
+            FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                return null;
+              },
+              elevation: 8,
+              mini: true,
+            ),
+          ],
+          toolbarHeight: 100,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
           ),
         ),
-        actions: [
-          FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () {
-              return null;
-            },
-            elevation: 8,
-            mini: true,
-          ),
-        ],
-        toolbarHeight: 100,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        backwardsCompatibility: false,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => Text("item $index"),
-      ),
-    );
+        body: ListView.separated(
+          itemCount: 10,
+          itemBuilder: (context, index) => PostTile(),
+          separatorBuilder: (context, index) => Divider(),
+        ));
   }
 }
