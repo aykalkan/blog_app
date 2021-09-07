@@ -1,4 +1,6 @@
+import 'package:blog_app/screens/post_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PostTile extends StatelessWidget {
   const PostTile({Key? key}) : super(key: key);
@@ -7,7 +9,7 @@ class PostTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        return null;
+        Get.to(() => PostDetailScreen());
       },
       child: Column(
         children: [
