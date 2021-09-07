@@ -31,6 +31,7 @@ dependencies:
   get: ^4.3.8
   firebase_auth: ^3.1.0
   cloud_firestore: ^2.5.1
+  flutter_statusbarcolor_ns: ^0.3.0-nullsafety
 
 dev_dependencies:
   flutter_test:
