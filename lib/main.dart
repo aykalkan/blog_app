@@ -5,13 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-void main() async {
-  await initServices();
+void main() {
   runApp(MyApp());
-}
-
-Future<void> initServices() async {
-  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
@@ -19,24 +14,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData.light().copyWith(
-        appBarTheme: AppBarTheme(
-          foregroundColor: Colors.black,
-          titleTextStyle: Theme.of(context)
-              .textTheme
-              .headline4!
-              .copyWith(color: Colors.black),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          backwardsCompatibility: false,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.dark,
-            statusBarColor: Colors.transparent,
-          ),
-        ),
-      ),
-      home: HomeScreen(),
+    return FutureBuilder(
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done)
+          return GetMaterialApp(
+            theme: ThemeData.light().copyWith(
+              appBarTheme: AppBarTheme(
+                foregroundColor: Colors.black,
+                titleTextStyle: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(color: Colors.black),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                backwardsCompatibility: false,
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarIconBrightness: Brightness.dark,
+                  statusBarColor: Colors.transparent,
+                ),
+              ),
+            ),
+            home: HomeScreen(),
+          );
+        else
+          return Text("Loading");
+      },
     );
   }
 }
