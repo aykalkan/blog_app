@@ -1,5 +1,6 @@
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/post_detail_screen.dart';
+import 'package:blog_app/screens/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,32 +15,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Firebase.initializeApp(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done)
-          return GetMaterialApp(
-            theme: ThemeData.light().copyWith(
-              appBarTheme: AppBarTheme(
-                foregroundColor: Colors.black,
-                titleTextStyle: Theme.of(context)
-                    .textTheme
-                    .headline4!
-                    .copyWith(color: Colors.black),
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                backwardsCompatibility: false,
-                systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarIconBrightness: Brightness.dark,
-                  statusBarColor: Colors.transparent,
-                ),
-              ),
-            ),
-            home: HomeScreen(),
-          );
-        else
-          return Text("Loading");
-      },
+    return GetMaterialApp(
+      theme: ThemeData.light().copyWith(
+        appBarTheme: AppBarTheme(
+          foregroundColor: Colors.black,
+          titleTextStyle: Theme.of(context)
+              .textTheme
+              .headline4!
+              .copyWith(color: Colors.black),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.dark,
+            statusBarColor: Colors.transparent,
+          ),
+        ),
+      ),
+      home: FutureBuilder(
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot) =>
+            snapshot.connectionState == ConnectionState.done
+                ? WelcomeScreen()
+                : Center(
+                    child: Text("Loading"),
+                  ),
+      ),
     );
   }
 }
