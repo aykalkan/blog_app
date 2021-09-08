@@ -71,6 +71,7 @@ class PostDetailScreen extends StatelessWidget {
                     ),
                     title: Text("Tobias Van"),
                     subtitle: Text("8th September 2021"),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 0),
                   ),
                   Text(
                     """Wireframing is a critical step in design—for you, for developers, for copywriters, and for anyone else who needs to understand your design. With all those people needing access, wouldn’t you want to work collaboratively from the get-go? 
