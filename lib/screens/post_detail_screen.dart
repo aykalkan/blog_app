@@ -1,6 +1,7 @@
 import 'package:blog_app/controllers/post_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PostDetailScreen extends StatelessWidget {
   const PostDetailScreen({Key? key}) : super(key: key);
@@ -85,6 +86,42 @@ Whether you’re sitting right next to someone or they’re halfway across the w
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+            label: "facebook",
+            backgroundColor: const Color(0xFF3B5998),
+            icon: FaIcon(
+              FontAwesomeIcons.facebookF,
+              //color: Colors.white,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "pinterest",
+            icon: FaIcon(
+              FontAwesomeIcons.pinterestP,
+              color: Colors.white,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "twitter",
+            icon: FaIcon(
+              FontAwesomeIcons.twitter,
+              color: Colors.white,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "thumbs_up",
+            icon: FaIcon(
+              FontAwesomeIcons.solidThumbsUp,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }
