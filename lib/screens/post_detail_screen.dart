@@ -54,13 +54,31 @@ class PostDetailScreen extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               child: Column(
                 children: [
                   Text(
                     "A look into collaborative wireframing process", // TODO databaseden çek
                     style: Theme.of(context).textTheme.headline5,
                   ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUetqWKxw_yKx_rG80j-rBwapn-dmxVedugw&usqp=CAU",
+                      ),
+                    ),
+                    title: Text("Tobias Van"),
+                    subtitle: Text("3 mins to read"),
+                  ),
+                  Text(
+                    """Wireframing is a critical step in design—for you, for developers, for copywriters, and for anyone else who needs to understand your design. With all those people needing access, wouldn’t you want to work collaboratively from the get-go? 
+
+Why bother making a wireframe collaboratively?
+
+Well, for starters, collaborating lets you get feedback from your peers and stakeholders early on in the design process, keeping you from endless feedback cycles and helping you launch better designs faster.
+
+Whether you’re sitting right next to someone or they’re halfway across the world, working sessions help foster creativity. Ideas are the gift that keeps on giving—one leads to another leads to another and, before you know it, you and your team are throwing creative calls back-and-forth like old pros.""",
+                  )
                 ],
               ),
             ),
