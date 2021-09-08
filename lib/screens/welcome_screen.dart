@@ -1,5 +1,7 @@
 import 'package:blog_app/controllers/welcome_image_dots.dart';
+import 'package:blog_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -93,7 +95,7 @@ class WelcomeScreen extends StatelessWidget {
                           padding: EdgeInsets.all(8),
                           child: ElevatedButton(
                             onPressed: () {
-                              return null;
+                              Get.to(() => SignupScreen());
                             },
                             child: Text(
                               "CREATE ACCOUNT",
