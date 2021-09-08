@@ -1,5 +1,6 @@
 import 'package:blog_app/controllers/post_detail_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -80,45 +81,61 @@ Well, for starters, collaborating lets you get feedback from your peers and stak
 
 Whether you’re sitting right next to someone or they’re halfway across the world, working sessions help foster creativity. Ideas are the gift that keeps on giving—one leads to another leads to another and, before you know it, you and your team are throwing creative calls back-and-forth like old pros.""",
                     style: TextStyle(height: 1.5),
-                  )
+                  ),
                 ],
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: [
-          BottomNavigationBarItem(
-            label: "facebook",
-            backgroundColor: const Color(0xFF3B5998),
-            icon: FaIcon(
-              FontAwesomeIcons.facebookF,
-              //color: Colors.white,
+      bottomNavigationBar: Row(
+        children: [
+          Expanded(
+            child: Container(
+              color: Color(0xFF3B5998),
+              child: IconButton(
+                onPressed: () => null,
+                icon: FaIcon(
+                  FontAwesomeIcons.facebookF,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
-          BottomNavigationBarItem(
-            label: "pinterest",
-            icon: FaIcon(
-              FontAwesomeIcons.pinterestP,
-              color: Colors.white,
+          Expanded(
+            child: Container(
+              color: Color(0xFFC8232C),
+              child: IconButton(
+                onPressed: () => null,
+                icon: FaIcon(
+                  FontAwesomeIcons.pinterestP,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
-          BottomNavigationBarItem(
-            label: "twitter",
-            icon: FaIcon(
-              FontAwesomeIcons.twitter,
-              color: Colors.white,
+          Expanded(
+            child: Container(
+              color: Color(0xFF1DA1F2),
+              child: IconButton(
+                onPressed: () => null,
+                icon: FaIcon(
+                  FontAwesomeIcons.twitter,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
-          BottomNavigationBarItem(
-            label: "thumbs_up",
-            icon: FaIcon(
-              FontAwesomeIcons.solidThumbsUp,
-              color: Colors.white,
+          Expanded(
+            child: Container(
+              color: Color(0xFFEF951C),
+              child: IconButton(
+                onPressed: () => null,
+                icon: FaIcon(
+                  FontAwesomeIcons.solidThumbsUp,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
         ],
