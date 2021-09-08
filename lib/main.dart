@@ -1,11 +1,17 @@
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/post_detail_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  await initServices();
   runApp(MyApp());
+}
+
+Future<void> initServices() async {
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
