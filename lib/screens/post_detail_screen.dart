@@ -78,6 +78,7 @@ Why bother making a wireframe collaboratively?
 Well, for starters, collaborating lets you get feedback from your peers and stakeholders early on in the design process, keeping you from endless feedback cycles and helping you launch better designs faster.
 
 Whether you’re sitting right next to someone or they’re halfway across the world, working sessions help foster creativity. Ideas are the gift that keeps on giving—one leads to another leads to another and, before you know it, you and your team are throwing creative calls back-and-forth like old pros.""",
+                    style: TextStyle(height: 1.5),
                   )
                 ],
               ),
