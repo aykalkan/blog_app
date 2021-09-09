@@ -27,6 +27,11 @@ class CollectionService {
     return documentReference;
   }
 
+  Future<List<dynamic>> getAll() async {
+    final snapshot = await _collection.get();
+    return snapshot.docs.map((e) => e.data()).toList();
+  }
+
   Future<QuerySnapshot> find(
     String fieldName,
     dynamic value,
