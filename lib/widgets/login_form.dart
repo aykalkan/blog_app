@@ -1,5 +1,6 @@
 import 'package:blog_app/widgets/chubby_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class LoginForm extends StatelessWidget {
             ),
             ChubbyElevatedButton(
               "CREATE ACCOUNT",
+              icon: Icon(FontAwesomeIcons.twitter),
               margin: EdgeInsets.only(top: 32),
             ),
           ],
