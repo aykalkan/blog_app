@@ -9,7 +9,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 30),
+        padding: EdgeInsets.only(top: 30),
         child: Column(
           children: [
             TextFormField(
