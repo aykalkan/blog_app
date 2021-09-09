@@ -9,16 +9,17 @@ class ChubbyElevatedButton extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final Color? color;
   final String text;
   final EdgeInsetsGeometry? margin;
   final void Function()? onPressed;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       height: 70,
-      padding: EdgeInsets.all(8),
+      margin: margin,
       child: ElevatedButton(
         onPressed: onPressed ??
             () {
@@ -32,7 +33,7 @@ class ChubbyElevatedButton extends StatelessWidget {
               ),
         ),
         style: ElevatedButton.styleFrom(
-          primary: color == null ? Theme.of(context).primaryColor : color,
+          primary: color ?? Theme.of(context).primaryColor,
         ),
       ),
     );
