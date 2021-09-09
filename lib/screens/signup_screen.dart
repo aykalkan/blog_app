@@ -1,3 +1,4 @@
+import 'package:blog_app/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
+          padding: EdgeInsets.all(24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -28,6 +30,7 @@ class SignupScreen extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 ),
               ),
+              SignupForm(),
             ],
           ),
         ),
