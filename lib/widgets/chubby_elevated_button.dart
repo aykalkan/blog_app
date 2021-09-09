@@ -20,7 +20,7 @@ class ChubbyElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 70,
+      height: 50,
       margin: margin,
       child: ElevatedButton(
         onPressed: onPressed ??
