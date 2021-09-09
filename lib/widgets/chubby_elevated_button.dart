@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ChubbyElevatedButton extends StatelessWidget {
-  ChubbyElevatedButton(this.text, {this.color, Key? key}) : super(key: key);
+  ChubbyElevatedButton(
+    this.text, {
+    this.color,
+    this.margin,
+    this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   final Color? color;
   final String text;
+  final EdgeInsetsGeometry? margin;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +20,10 @@ class ChubbyElevatedButton extends StatelessWidget {
       height: 70,
       padding: EdgeInsets.all(8),
       child: ElevatedButton(
-        onPressed: () {
-          return null;
-        },
+        onPressed: onPressed ??
+            () {
+              return null;
+            },
         child: Text(
           text,
           style: Theme.of(context).textTheme.button!.copyWith(
