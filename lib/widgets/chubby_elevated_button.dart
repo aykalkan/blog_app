@@ -31,6 +31,7 @@ class ChubbyElevatedButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (icon != null) icon!,
+            SizedBox(width: 10),
             Text(
               text,
               style: Theme.of(context).textTheme.button!.copyWith(
