@@ -35,6 +35,18 @@ class SignupScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomSheet: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Already have an account?"),
+          TextButton(
+            onPressed: () {
+              return null;
+            },
+            child: Text("Sign In"),
+          ),
+        ],
+      ),
     );
   }
 }
