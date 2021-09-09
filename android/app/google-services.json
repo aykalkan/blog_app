@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "180731053564",
+    "project_id": "com-turkticaret-blogapp",
+    "storage_bucket": "com-turkticaret-blogapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180731053564:android:4d9ef2caccc454852e5e79",
+        "android_client_info": {
+          "package_name": "com.turkticaret.blog_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180731053564-n2bbokqo4jvfcf2c3l3vr56ib4785t5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMzZA_4xch59_1ZCqCfcM5HrNPIZsYxfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180731053564-n2bbokqo4jvfcf2c3l3vr56ib4785t5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

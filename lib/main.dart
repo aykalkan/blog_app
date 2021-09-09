@@ -1,17 +1,13 @@
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/post_detail_screen.dart';
+import 'package:blog_app/screens/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-void main() async {
-  await initServices();
+void main() {
   runApp(MyApp());
-}
-
-Future<void> initServices() async {
-  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +32,15 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomeScreen(),
+      home: FutureBuilder(
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot) =>
+            snapshot.connectionState == ConnectionState.done
+                ? WelcomeScreen()
+                : Center(
+                    child: Text("Loading"),
+                  ),
+      ),
     );
   }
 }
