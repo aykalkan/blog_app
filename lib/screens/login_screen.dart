@@ -34,12 +34,12 @@ class LoginScreen extends StatelessWidget {
             LoginForm(),
             Center(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Text("OR"),
               ),
             ),
             ChubbyElevatedButton("Sign in with Twitter", icon: Icon(FontAwesomeIcons.twitter,),),
-            SizedBox(height: 16),
+            SizedBox(height: 12),
             ChubbyElevatedButton("Sign in with Facebook", icon: Icon(FontAwesomeIcons.facebook,),),
           ],
         ),

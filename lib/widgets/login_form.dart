@@ -9,7 +9,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Container(
-        padding: EdgeInsets.only(top: 30),
+        // padding: EdgeInsets.only(top: 20),
         child: Column(
           children: [
             TextFormField(
@@ -37,7 +37,7 @@ class LoginForm extends StatelessWidget {
             ChubbyElevatedButton(
               "CREATE ACCOUNT",
               icon: Icon(FontAwesomeIcons.twitter),
-              margin: EdgeInsets.only(top: 32),
+              margin: EdgeInsets.only(top: 10),
             ),
           ],
         ),
