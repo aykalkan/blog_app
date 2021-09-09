@@ -1,5 +1,7 @@
+import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/widgets/chubby_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({Key? key}) : super(key: key);
@@ -29,6 +31,7 @@ class SignupForm extends StatelessWidget {
             ChubbyElevatedButton(
               "CREATE ACCOUNT",
               margin: EdgeInsets.only(top: 32),
+              onPressed: () => Get.offAll(() => HomeScreen()),
             ),
           ],
         ),

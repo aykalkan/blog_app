@@ -1,3 +1,4 @@
+import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/signup_screen.dart';
 import 'package:blog_app/widgets/chubby_elevated_button.dart';
 import 'package:blog_app/widgets/login_form.dart';
@@ -40,9 +41,17 @@ class LoginScreen extends StatelessWidget {
                 child: Text("OR"),
               ),
             ),
-            ChubbyElevatedButton("Sign in with Twitter", icon: Icon(FontAwesomeIcons.twitter,),),
+            ChubbyElevatedButton(
+              "Sign in with Twitter",
+              icon: Icon(FontAwesomeIcons.twitter),
+              onPressed: () => Get.offAll(() => HomeScreen()),
+            ),
             SizedBox(height: 12),
-            ChubbyElevatedButton("Sign in with Facebook", icon: Icon(FontAwesomeIcons.facebook,),),
+            ChubbyElevatedButton(
+              "Sign in with Facebook",
+              icon: Icon(FontAwesomeIcons.facebook),
+              onPressed: () => Get.offAll(() => HomeScreen()),
+            ),
           ],
         ),
       ),
