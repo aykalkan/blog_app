@@ -34,12 +34,12 @@ class LoginScreen extends StatelessWidget {
       bottomSheet: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Already have an account?"),
+          Text("Don't have an account?"),
           TextButton(
             onPressed: () {
               return null;
             },
-            child: Text("Sign In"),
+            child: Text("Sign Up"),
           ),
         ],
       ),
