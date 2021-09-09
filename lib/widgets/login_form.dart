@@ -14,17 +14,24 @@ class LoginForm extends StatelessWidget {
           children: [
             TextFormField(
               decoration: InputDecoration(
-                labelText: "Full Name",
-              ),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
                 labelText: "Email",
               ),
             ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: "Create Password",
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  return null;
+                },
+                child: Text(
+                  "Forgot Password?",
+                ),
+                style: TextButton.styleFrom(primary: Colors.grey),
               ),
             ),
             ChubbyElevatedButton(
