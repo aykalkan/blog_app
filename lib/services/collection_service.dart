@@ -26,8 +26,6 @@ class CollectionService {
     final documentReference = _collection.doc(id);
     await documentReference.set(data);
 
-    
-
     return documentReference;
   }
 
@@ -57,6 +55,10 @@ class CollectionService {
         message: "not-found",
       );
     return snapshot.docs.first;
+  }
+
+  Stream<QuerySnapshot<Object?>> getDocsStream() {
+    return _collection.snapshots();
   }
 
   Future<void> delete(String id) async {
