@@ -1,3 +1,4 @@
+import 'package:blog_app/widgets/chubby_elevated_button.dart';
 import 'package:flutter/material.dart';
 
 class SignupForm extends StatelessWidget {
@@ -25,17 +26,9 @@ class SignupForm extends StatelessWidget {
                 labelText: "Create Password",
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(top: 30),
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  return null;
-                },
-                child: Text(
-                  "Create Account",
-                ),
-              ),
+            ChubbyElevatedButton(
+              "CREATE ACCOUNT",
+              margin: EdgeInsets.only(top: 32),
             ),
           ],
         ),
