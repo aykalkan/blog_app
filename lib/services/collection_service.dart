@@ -11,6 +11,8 @@ class CollectionService {
   }
   late CollectionReference _collection;
 
+  get referance => _collection;
+
   Future<DocumentReference> add(
     Map<String, dynamic> data,
   ) async {
@@ -24,12 +26,9 @@ class CollectionService {
     final documentReference = _collection.doc(id);
     await documentReference.set(data);
 
-    return documentReference;
-  }
+    
 
-  Future<List<dynamic>> getAll() async {
-    final snapshot = await _collection.get();
-    return snapshot.docs.map((e) => e.data()).toList();
+    return documentReference;
   }
 
   Future<QuerySnapshot> find(
