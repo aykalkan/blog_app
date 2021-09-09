@@ -1,5 +1,7 @@
+import 'package:blog_app/screens/login_screen.dart';
 import 'package:blog_app/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -41,7 +43,7 @@ class SignupScreen extends StatelessWidget {
           Text("Already have an account?"),
           TextButton(
             onPressed: () {
-              return null;
+              Get.off(() => LoginScreen());
             },
             child: Text("Sign In"),
           ),
