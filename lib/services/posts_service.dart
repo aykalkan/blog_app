@@ -11,10 +11,13 @@ class PostsService {
       _collectionService.getDocsStream();
 
   void postsStream() {
+
     docsStream.map(
       (event) {
         event.docChanges.map((documents){
           final data = documents.doc.data();
+          print("_____DATADATADATA_____");
+          print(data);
         });
       },
     );

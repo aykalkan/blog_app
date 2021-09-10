@@ -1,3 +1,4 @@
+import 'package:blog_app/screens/dummy_screen.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/post_detail_screen.dart';
 import 'package:blog_app/screens/welcome_screen.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         future: Firebase.initializeApp(),
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.done
-                ? WelcomeScreen()
+                // ? WelcomeScreen()
+                ? DummyScreen()
                 : Center(
                     child: Text("Loading"),
                   ),
