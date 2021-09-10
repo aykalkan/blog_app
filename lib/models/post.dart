@@ -1,10 +1,12 @@
+import 'package:blog_app/models/categories.dart';
+
 class Post {
   Post({
     required this.title,
     required this.content,
     required this.imageUrl,
     required this.ownerId,
-    required this.categoryId,
+    required this.category,
     required this.readSpan,
     required this.createdAt,
   });
@@ -14,7 +16,7 @@ class Post {
   final String content;
   final String imageUrl;
   final String ownerId;
-  final String categoryId;
+  final Categories category;
   final int readSpan;
   final DateTime createdAt;
 
@@ -24,7 +26,7 @@ class Post {
       "content": content,
       "imageUrl": imageUrl,
       "ownerId": ownerId,
-      "categoryId": categoryId,
+      "category": category,
       "readSpan": readSpan,
       "createdAt": createdAt,
     };
