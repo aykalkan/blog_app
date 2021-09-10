@@ -1,3 +1,4 @@
+import 'package:blog_app/models/categories.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesDropdown extends StatefulWidget {
@@ -8,13 +9,13 @@ class CategoriesDropdown extends StatefulWidget {
 }
 
 class _CategoriesDropdownState extends State<CategoriesDropdown> {
-  String dropdownValue = 'Ux Design';
+  Categories currentValue = Categories.uxDesign;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: DropdownButton<String>(
-        value: dropdownValue,
+      child: DropdownButton<Categories>(
+        value: currentValue,
         icon: const Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
@@ -23,16 +24,17 @@ class _CategoriesDropdownState extends State<CategoriesDropdown> {
           height: 2,
           color: Theme.of(context).primaryColor,
         ),
-        onChanged: (String? newValue) {
+        onChanged: (Categories? newValue) {
           setState(() {
-            dropdownValue = newValue!;
+            currentValue = newValue!;
           });
         },
-        items: <String>['Ux Design', 'Tools', 'Content']
-            .map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
+        items: Categories.values.map((category) {
+          return DropdownMenuItem<Categories>(
+            value: category,
+            child: Text(
+              category.name,
+            ),
           );
         }).toList(),
       ),
