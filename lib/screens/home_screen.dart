@@ -1,5 +1,7 @@
+import 'package:blog_app/screens/add_post_screen.dart';
 import 'package:blog_app/widgets/post_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class HomeScreen extends StatelessWidget {
             FloatingActionButton(
               child: Icon(Icons.add),
               onPressed: () {
-                return null;
+                Get.to(() => AddPostScreen());
               },
               elevation: 8,
               mini: true,
