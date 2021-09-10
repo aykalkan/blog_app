@@ -2,7 +2,12 @@ import 'package:blog_app/models/categories.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesDropdown extends StatefulWidget {
-  const CategoriesDropdown({Key? key}) : super(key: key);
+  CategoriesDropdown({
+    Key? key,
+    required this.onchanged,
+  }) : super(key: key);
+
+  ValueChanged<Categories> onchanged;
 
   @override
   State<CategoriesDropdown> createState() => _CategoriesDropdownState();
@@ -28,6 +33,7 @@ class _CategoriesDropdownState extends State<CategoriesDropdown> {
           setState(() {
             currentValue = newValue!;
           });
+          widget.onchanged(newValue!);
         },
         items: Categories.values.map((category) {
           return DropdownMenuItem<Categories>(
