@@ -10,8 +10,6 @@ class GeneralController extends GetxController {
     super.onInit();
   }
 
-  RxList<Post> _posts = <Post>[].obs;
-
-  get posts => _posts;
+  RxList<Post> posts = <Post>[].obs;
 
 }
