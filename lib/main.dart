@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
         future: Firebase.initializeApp(),
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.done
-                //  ? WelcomeScreen()
-                ? DummyScreen()
+                 ? WelcomeScreen()
+                // ? DummyScreen()
                 : Center(
                     child: Text("Loading"),
                   ),

@@ -35,10 +35,12 @@ class HomeScreen extends StatelessWidget {
         //   statusBarColor: Colors.transparent,
         // ),
       ),
-      body: ListView.separated(
-        itemCount: 10,
-        itemBuilder: (context, index) => PostTile(),
-        separatorBuilder: (context, index) => Divider(),
+      body: Obx(
+        () => ListView.separated(
+          itemCount: _controller.posts.length,
+          itemBuilder: (context, index) => PostTile(post: _controller.posts[index]),
+          separatorBuilder: (context, index) => Divider(),
+        ),
       ),
     );
   }

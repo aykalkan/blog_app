@@ -1,9 +1,15 @@
+import 'package:blog_app/models/post.dart';
 import 'package:blog_app/screens/post_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PostTile extends StatelessWidget {
-  const PostTile({Key? key}) : super(key: key);
+  const PostTile({
+    Key? key,
+    required this.post,
+  }) : super(key: key);
+
+  final Post post;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +25,8 @@ class PostTile extends StatelessWidget {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUetqWKxw_yKx_rG80j-rBwapn-dmxVedugw&usqp=CAU",
               ),
             ),
-            title: Text("Tobias Van"),
-            subtitle: Text("3 mins to read"),
+            title: Text(post.ownerId),
+            subtitle: Text("${post.readSpan} mins to read"),
             trailing: IconButton(
               onPressed: () {
                 return null;
@@ -38,7 +44,7 @@ class PostTile extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "A look into collaborative wireframing process",
+                  post.title,
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 SizedBox(
@@ -46,7 +52,7 @@ class PostTile extends StatelessWidget {
                 ),
                 ClipRRect(
                   child: Image.network(
-                    "https://images.unsplash.com/photo-1552229633-cbbaf48ddd4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8Mzc4MjUxMHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=416&q=60",
+                    post.imageUrl,
                     height: 185,
                     width: double.infinity,
                     fit: BoxFit.fitWidth,

@@ -12,7 +12,6 @@ class DummyScreen extends StatelessWidget {
   DummyScreen({Key? key}) : super(key: key);
 
   final _controller = Get.put(GeneralController());
-  final _service = CollectionService(Collection.posts);
 
   @override
   Widget build(BuildContext context) {

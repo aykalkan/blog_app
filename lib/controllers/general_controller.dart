@@ -6,7 +6,7 @@ class GeneralController extends GetxController {
 
     @override
   void onInit() { // called immediately after the widget is allocated memory
-    // _posts.bindStream(PostsService().postsStream());
+    PostsService().initPostsListener(this);
     super.onInit();
   }
 
