@@ -1,10 +1,14 @@
+import 'package:blog_app/controllers/general_controller.dart';
+import 'package:blog_app/services/posts_service.dart';
 import 'package:blog_app/screens/add_post_screen.dart';
 import 'package:blog_app/widgets/post_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  final _controller = Get.put(GeneralController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +35,16 @@ class HomeScreen extends StatelessWidget {
           //   statusBarColor: Colors.transparent,
           // ),
         ),
-        body: ListView.separated(
-          itemCount: 10,
-          itemBuilder: (context, index) => PostTile(),
-          separatorBuilder: (context, index) => Divider(),
-        ));
+      
+      body: Obx(
+        () {
+          return ListView.separated(
+            itemCount: _controller.posts.length,
+            itemBuilder: (context, index) => PostTile(),
+            separatorBuilder: (context, index) => Divider(),
+          );
+        },
+      ),
+    );
   }
 }
