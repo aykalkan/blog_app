@@ -8,7 +8,6 @@ class Post {
     required this.ownerId,
     required this.category,
     required this.readSpan,
-    required this.createdAt,
   });
 
   late String id;
@@ -18,7 +17,6 @@ class Post {
   final String ownerId;
   final Categories category;
   final int readSpan;
-  final DateTime createdAt;
 
   Map<String, dynamic> toMap() {
     return {
@@ -26,9 +24,8 @@ class Post {
       "content": content,
       "imageUrl": imageUrl,
       "ownerId": ownerId,
-      "category": category,
+      "category": category.name,
       "readSpan": readSpan,
-      "createdAt": createdAt,
     };
   }
 }

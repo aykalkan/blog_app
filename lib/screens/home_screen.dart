@@ -13,37 +13,32 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Latest Feed",
-          ),
-          actions: [
-            FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                Get.to(() => AddPostScreen());
-              },
-              elevation: 8,
-              mini: true,
-            ),
-          ],
-          toolbarHeight: 100,
-          // backgroundColor: Colors.transparent,
-          // elevation: 0,
-          // backwardsCompatibility: false,
-          // systemOverlayStyle: SystemUiOverlayStyle(
-          //   statusBarColor: Colors.transparent,
-          // ),
+      appBar: AppBar(
+        title: Text(
+          "Latest Feed",
         ),
-      
-      body: Obx(
-        () {
-          return ListView.separated(
-            itemCount: 10,
-            itemBuilder: (context, index) => PostTile(),
-            separatorBuilder: (context, index) => Divider(),
-          );
-        },
+        actions: [
+          FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              Get.to(() => AddPostScreen());
+            },
+            elevation: 8,
+            mini: true,
+          ),
+        ],
+        toolbarHeight: 100,
+        // backgroundColor: Colors.transparent,
+        // elevation: 0,
+        // backwardsCompatibility: false,
+        // systemOverlayStyle: SystemUiOverlayStyle(
+        //   statusBarColor: Colors.transparent,
+        // ),
+      ),
+      body: ListView.separated(
+        itemCount: 10,
+        itemBuilder: (context, index) => PostTile(),
+        separatorBuilder: (context, index) => Divider(),
       ),
     );
   }

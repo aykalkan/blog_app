@@ -18,6 +18,7 @@ class CollectionService {
   Future<DocumentReference> add(
     Map<String, dynamic> data,
   ) async {
+    data["createdAt"] = FieldValue.serverTimestamp();
     return await _collection.add(data);
   }
 

@@ -72,9 +72,8 @@ class AddPostForm extends StatelessWidget {
                   ownerId: "4OCOzrOhJWKhBM4qmV7E",
                   category: _category!,
                   readSpan: _readSpan,
-                  createdAt: DateTime.now(),
                 );
-                
+
                 PostsService().add(post);
 
                 Get.offAll(() => HomeScreen());
