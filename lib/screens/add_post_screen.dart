@@ -13,7 +13,12 @@ class AddPostScreen extends StatelessWidget {
         ),
         toolbarHeight: 100,
       ),
-      body: AddPostForm(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: AddPostForm(),
+        ),
+      ),
     );
   }
 }
