@@ -8,7 +8,7 @@ class CategoriesDropdown extends StatefulWidget {
 }
 
 class _CategoriesDropdownState extends State<CategoriesDropdown> {
-  String dropdownValue = 'Chose a category';
+  String dropdownValue = 'Ux Design';
 
   @override
   Widget build(BuildContext context) {
