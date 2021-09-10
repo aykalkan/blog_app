@@ -25,12 +25,26 @@ class AddPostForm extends StatelessWidget {
                 labelText: "Image URL",
               ),
             ),
-            CategoriesDropdown(),
-            NumericStepButton(onChanged: (value) => null),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Text("Category"),
+                ),
+                CategoriesDropdown(),
+              ],
+            ),
+            Row(
+              children: [
+                Text("Read span (mins)"),
+                NumericStepButton(onChanged: (value) => null),
+              ],
+            ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: "Content",
               ),
+              keyboardType: TextInputType.multiline,
             ),
             ChubbyElevatedButton(
               "ADD POST",
