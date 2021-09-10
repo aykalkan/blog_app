@@ -43,7 +43,9 @@ class AddPostForm extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20),
                   child: Text("Category"),
                 ),
-                CategoriesDropdown(),
+                CategoriesDropdown(
+                  onchanged: (value) => _category = value,
+                ),
               ],
             ),
             Row(
@@ -68,11 +70,13 @@ class AddPostForm extends StatelessWidget {
                   content: _content,
                   imageUrl: _imageUrl,
                   ownerId: "4OCOzrOhJWKhBM4qmV7E",
-                  category: _category,
+                  category: _category!,
                   readSpan: _readSpan,
                   createdAt: DateTime.now(),
                 );
+                
                 PostsService().add(post);
+
                 Get.offAll(() => HomeScreen());
               },
             ),

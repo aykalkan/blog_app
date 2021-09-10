@@ -18,6 +18,8 @@ class _CategoriesDropdownState extends State<CategoriesDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    widget.onchanged(currentValue);
+    
     return Center(
       child: DropdownButton<Categories>(
         value: currentValue,
@@ -33,7 +35,7 @@ class _CategoriesDropdownState extends State<CategoriesDropdown> {
           setState(() {
             currentValue = newValue!;
           });
-          widget.onchanged(newValue!);
+          widget.onchanged(currentValue);
         },
         items: Categories.values.map((category) {
           return DropdownMenuItem<Categories>(
