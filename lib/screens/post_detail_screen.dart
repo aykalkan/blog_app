@@ -1,6 +1,7 @@
 import 'package:blog_app/controllers/general_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
+import 'package:blog_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,12 @@ class PostDetailScreen extends StatelessWidget {
     Post post = Get.arguments;
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Get.offAll(() => HomeScreen());
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
