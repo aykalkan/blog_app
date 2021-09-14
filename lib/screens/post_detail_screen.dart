@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class PostDetailScreen extends StatelessWidget {
   const PostDetailScreen({Key? key}) : super(key: key);
@@ -78,7 +79,9 @@ class PostDetailScreen extends StatelessWidget {
                       ),
                     ),
                     title: Text(post.ownerId),
-                    subtitle: Text("8th September 2021"),
+                    subtitle: Text(DateFormat.yMMMMd().format(
+                        DateTime.fromMillisecondsSinceEpoch(
+                            post.createdAt!.millisecondsSinceEpoch))),
                     contentPadding: EdgeInsets.symmetric(horizontal: 0),
                   ),
                   Text(

@@ -1,4 +1,5 @@
 import 'package:blog_app/models/categories.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Post {
   Post({
@@ -9,7 +10,10 @@ class Post {
     required this.ownerId,
     required this.category,
     required this.readSpan,
-  });
+    this.createdAt,
+  }) {
+    createdAt = createdAt ?? Timestamp.now();
+  }
 
   String? id;
   late String title;
@@ -18,6 +22,7 @@ class Post {
   late String ownerId;
   late Categories category;
   late int readSpan;
+  Timestamp? createdAt;
 
   Post.fromMap(Map<String, dynamic> map) {
     map.forEach((key, value) {
@@ -39,6 +44,9 @@ class Post {
           break;
         case "readSpan":
           readSpan = value;
+          break;
+        case "createdAt":
+          createdAt = value;
           break;
         default:
       }
@@ -66,6 +74,7 @@ class Post {
       "ownerId": ownerId,
       "category": category.name,
       "readSpan": readSpan,
+      "createdAt": createdAt,
     };
   }
 }

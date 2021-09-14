@@ -38,7 +38,8 @@ class HomeScreen extends StatelessWidget {
       body: Obx(
         () => ListView.separated(
           itemCount: _controller.posts.length,
-          itemBuilder: (context, index) => PostTile(post: _controller.posts[index]),
+          itemBuilder: (context, index) =>
+              PostTile(post: _controller.posts[index]),
           separatorBuilder: (context, index) => Divider(),
         ),
       ),

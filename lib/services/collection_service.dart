@@ -61,7 +61,7 @@ class CollectionService {
   }
 
   Stream<QuerySnapshot<Object?>> getDocsStream() {
-    return _collection.snapshots();
+    return referance.snapshots();
   }
 
   Future<void> delete(String id) async {

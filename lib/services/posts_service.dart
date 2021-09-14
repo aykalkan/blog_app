@@ -6,13 +6,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class PostsService {
   final _collectionService = CollectionService(Collection.posts);
 
-  get referance => _collectionService.referance;
+  CollectionReference get referance => _collectionService.referance;
 
   Stream<QuerySnapshot<Object?>> get docsStream =>
       _collectionService.getDocsStream();
 
   void initPostsListener(GeneralController controller) {
-    docsStream.listen(
+    referance
+    .orderBy("createdAt", descending: true)
+    .snapshots()
+    .listen(
       (event) {
         event.docChanges.forEach((element) async {
           final data = await element.doc.reference.get();
@@ -27,6 +30,7 @@ class PostsService {
               category: Post.getCategoryFromName(data["category"]),
               readSpan: data["readSpan"],
               id: id,
+              createdAt: data["createdAt"],
             );
             controller.posts.add(post);
             print("Post created with id ${post.id}");
