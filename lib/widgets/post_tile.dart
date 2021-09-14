@@ -15,7 +15,7 @@ class PostTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => PostDetailScreen());
+        Get.to(() => PostDetailScreen(),arguments: post);
       },
       child: Column(
         children: [

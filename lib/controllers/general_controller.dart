@@ -12,4 +12,10 @@ class GeneralController extends GetxController {
 
   RxList<Post> posts = <Post>[].obs;
 
+    var _isFavourite = false.obs;
+
+  get isFavourite => _isFavourite.value;
+
+  set isFavourite(value) => _isFavourite.value = value;
+
 }

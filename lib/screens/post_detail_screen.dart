@@ -1,4 +1,6 @@
-import 'package:blog_app/controllers/post_detail_controller.dart';
+import 'package:blog_app/controllers/general_controller.dart';
+import 'package:blog_app/models/categories.dart';
+import 'package:blog_app/models/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -9,7 +11,9 @@ class PostDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PostDetailController controller = Get.put(PostDetailController());
+    final GeneralController controller = Get.put(GeneralController());
+
+    Post post = Get.arguments;
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.arrow_back_ios),
@@ -33,8 +37,7 @@ class PostDetailScreen extends StatelessWidget {
             Stack(
               children: [
                 Image.network(
-                  // TODO databaseden çek
-                  "https://images.unsplash.com/photo-1552229633-cbbaf48ddd4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXRodW1ibmFpbHx8Mzc4MjUxMHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=416&q=60",
+                  post.imageUrl,
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.fitWidth,
@@ -44,8 +47,7 @@ class PostDetailScreen extends StatelessWidget {
                   left: 30,
                   child: Chip(
                     label: Text(
-                      //TODO databaseden çek
-                      "UX DESIGN",
+                      post.category.name,
                       style: TextStyle(color: Colors.white),
                     ),
                     shape: RoundedRectangleBorder(
@@ -60,7 +62,7 @@ class PostDetailScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "A look into collaborative wireframing process", // TODO databaseden çek
+                    post.title,
                     style: Theme.of(context).textTheme.headline5,
                   ),
                   ListTile(
@@ -69,18 +71,12 @@ class PostDetailScreen extends StatelessWidget {
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUetqWKxw_yKx_rG80j-rBwapn-dmxVedugw&usqp=CAU",
                       ),
                     ),
-                    title: Text("Tobias Van"),
+                    title: Text(post.ownerId),
                     subtitle: Text("8th September 2021"),
                     contentPadding: EdgeInsets.symmetric(horizontal: 0),
                   ),
                   Text(
-                    """Wireframing is a critical step in design—for you, for developers, for copywriters, and for anyone else who needs to understand your design. With all those people needing access, wouldn’t you want to work collaboratively from the get-go? 
-
-Why bother making a wireframe collaboratively?
-
-Well, for starters, collaborating lets you get feedback from your peers and stakeholders early on in the design process, keeping you from endless feedback cycles and helping you launch better designs faster.
-
-Whether you’re sitting right next to someone or they’re halfway across the world, working sessions help foster creativity. Ideas are the gift that keeps on giving—one leads to another leads to another and, before you know it, you and your team are throwing creative calls back-and-forth like old pros.""",
+                    post.content,
                     style: TextStyle(height: 1.5),
                   ),
                 ],
