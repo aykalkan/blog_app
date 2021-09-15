@@ -10,12 +10,12 @@ class User {
     this.favouritePosts = const [],
   });
 
-  User.fromDocumentSnapshot(DocumentSnapshot snapshot){
-    this.name = snapshot["name"];
-    this.email = snapshot["email"];
-    this.photoUrl = snapshot["photoUrl"];
-    this.posts = snapshot["posts"];
-    this.favouritePosts = snapshot["favouritePosts"];
+  User.fromJson(Map<String, dynamic> data) {
+    this.name = data["name"];
+    this.email = data["email"];
+    this.photoUrl = data["photoUrl"];
+    //this.posts = data["posts"] as List<String>;
+    //this.favouritePosts = data["favouritePosts"] as List<String>;
   }
 
   late final String name;

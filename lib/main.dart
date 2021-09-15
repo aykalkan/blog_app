@@ -1,3 +1,4 @@
+import 'package:blog_app/controllers/auth_controller.dart';
 import 'package:blog_app/controllers/bindings/auth_binding.dart';
 import 'package:blog_app/screens/dummy_screen.dart';
 import 'package:blog_app/screens/home_screen.dart';
@@ -39,8 +40,10 @@ class MyApp extends StatelessWidget {
         future: Firebase.initializeApp(),
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.done
-                 ? WelcomeScreen()
-                // ? DummyScreen()
+                // ? WelcomeScreen()
+                ? Get.find<AuthController>().user == null
+                    ? WelcomeScreen()
+                    : HomeScreen()
                 : Center(
                     child: Text("Loading"),
                   ),

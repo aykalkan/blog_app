@@ -1,3 +1,4 @@
+import 'package:blog_app/controllers/auth_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
 import 'package:blog_app/screens/home_screen.dart';
@@ -5,6 +6,7 @@ import 'package:blog_app/services/posts_service.dart';
 import 'package:blog_app/widgets/categories_dropdown.dart';
 import 'package:blog_app/widgets/chubby_elevated_button.dart';
 import 'package:blog_app/widgets/numeric_step_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,7 +71,7 @@ class AddPostForm extends StatelessWidget {
                   title: _title,
                   content: _content,
                   imageUrl: _imageUrl,
-                  ownerId: "4OCOzrOhJWKhBM4qmV7E",
+                  ownerId: FirebaseAuth.instance.currentUser!.uid,
                   category: _category!,
                   readSpan: _readSpan,
                 );

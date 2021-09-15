@@ -54,4 +54,13 @@ class AuthController extends GetxController {
       rethrow;
     }
   }
+
+  Future<u.User?> getCurrentUserObject () async {
+    try {
+      final uid = user.uid;
+      final snapshot = await _usersCollection.findWithId(uid);
+      return u.User.fromJson(snapshot.data() as Map<String,dynamic>);
+    } catch (e) {
+    }
+  }
 }

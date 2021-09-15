@@ -50,14 +50,14 @@ class CollectionService {
   Future<DocumentSnapshot> findWithId(
     String id,
   ) async {
-    final snapshot = await find("__name__", id);
+    final snapshot = await _collection.doc(id).get();
 
-    if (snapshot.docs.isEmpty)
+    if (!snapshot.exists)
       throw FirebaseException(
         plugin: "collection-service",
         message: "not-found",
       );
-    return snapshot.docs.first;
+    return snapshot;
   }
 
   Stream<QuerySnapshot<Object?>> getDocsStream() {
