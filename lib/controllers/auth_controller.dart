@@ -35,6 +35,7 @@ class AuthController extends GetxController {
     } catch (e) {
       Get.snackbar("Sign up failed!", e.toString(),
           snackPosition: SnackPosition.BOTTOM);
+      rethrow;
     }
   }
 
@@ -47,6 +48,7 @@ class AuthController extends GetxController {
     } catch (e) {
       Get.snackbar("Login failed!", e.toString(),
           snackPosition: SnackPosition.BOTTOM);
+      rethrow;
     }
   }
 }
