@@ -1,3 +1,4 @@
+import 'package:blog_app/controllers/bindings/auth_binding.dart';
 import 'package:blog_app/screens/dummy_screen.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/post_detail_screen.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: AuthBinding(),
       theme: ThemeData.light().copyWith(
         appBarTheme: AppBarTheme(
           foregroundColor: Colors.black,

@@ -23,6 +23,7 @@ class LoginForm extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: "Create Password",
               ),
+              obscureText: true,
             ),
             Container(
               alignment: Alignment.centerRight,
@@ -37,8 +38,7 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             ChubbyElevatedButton(
-              "CREATE ACCOUNT",
-              icon: Icon(FontAwesomeIcons.twitter),
+              "LOGIN",
               margin: EdgeInsets.only(top: 10),
               onPressed: () => Get.offAll(() => HomeScreen()),
             ),

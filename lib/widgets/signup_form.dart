@@ -35,6 +35,7 @@ class SignupForm extends GetWidget<AuthController> {
               decoration: InputDecoration(
                 labelText: "Create Password",
               ),
+              obscureText: true,
             ),
             ChubbyElevatedButton(
               "CREATE ACCOUNT",
