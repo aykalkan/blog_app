@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class User {
   User({
     required this.name,
@@ -8,11 +10,19 @@ class User {
     this.favouritePosts = const [],
   });
 
-  final String name;
-  final String email;
-  final String photoUrl;
-  final List<String> posts;
-  final List<String> favouritePosts;
+  User.fromDocumentSnapshot(DocumentSnapshot snapshot){
+    this.name = snapshot["name"];
+    this.email = snapshot["email"];
+    this.photoUrl = snapshot["photoUrl"];
+    this.posts = snapshot["posts"];
+    this.favouritePosts = snapshot["favouritePosts"];
+  }
+
+  late final String name;
+  late final String email;
+  late final String photoUrl;
+  late final List<String> posts;
+  late final List<String> favouritePosts;
 
   Map<String, dynamic> toJson() {
     return {
