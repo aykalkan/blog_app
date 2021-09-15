@@ -12,11 +12,12 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
+    _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.authStateChanges());
     super.onInit();
   }
 
-  void createUser(String name, String email, String password) async {
+  Future<void> createUser(String name, String email, String password) async {
     try {
       final fUser = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -39,12 +40,14 @@ class AuthController extends GetxController {
     }
   }
 
-  void login(String email, String password) async {
+  Future<void> login(String email, String password) async {
     try {
-      _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+
+      print("--- User ${_auth.currentUser!.uid} connected---");
     } catch (e) {
       Get.snackbar("Login failed!", e.toString(),
           snackPosition: SnackPosition.BOTTOM);

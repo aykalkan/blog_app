@@ -1,11 +1,15 @@
+import 'package:blog_app/controllers/auth_controller.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/widgets/chubby_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class LoginForm extends GetWidget<AuthController> {
+  LoginForm({Key? key}) : super(key: key);
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +19,15 @@ class LoginForm extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: "Email",
               ),
             ),
             TextFormField(
+              controller: _passwordController,
               decoration: InputDecoration(
-                labelText: "Create Password",
+                labelText: "Password",
               ),
               obscureText: true,
             ),
@@ -40,7 +46,15 @@ class LoginForm extends StatelessWidget {
             ChubbyElevatedButton(
               "LOGIN",
               margin: EdgeInsets.only(top: 10),
-              onPressed: () => Get.offAll(() => HomeScreen()),
+              onPressed: ()async {
+                try {
+                  await controller.login(
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+                  Get.offAll(() => HomeScreen());
+                } catch (e) {}
+              },
             ),
           ],
         ),

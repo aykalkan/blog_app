@@ -40,9 +40,9 @@ class SignupForm extends GetWidget<AuthController> {
             ChubbyElevatedButton(
               "CREATE ACCOUNT",
               margin: EdgeInsets.only(top: 32),
-              onPressed: () {
+              onPressed: () async {
                 try {
-                controller.createUser(
+                await controller.createUser(
                   _nameController.text,
                   _emailController.text,
                   _passwordController.text,
