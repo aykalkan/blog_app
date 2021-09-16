@@ -27,20 +27,21 @@ class PostTile extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             // User user =
             // User.fromJson(snapshot.data!.data() as Map<String, dynamic>);
-            User user = snapshot.data!;
+            if (!snapshot.hasData) return Text("User cannot found");
+            User owner = snapshot.data!;
             return InkWell(
               onTap: () {
-                Get.to(() => PostDetailScreen(), arguments: post);
+                Get.to(() => PostDetailScreen(), arguments: [post, owner]);
               },
               child: Column(
                 children: [
                   ListTile(
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(
-                        user.photoUrl,
+                        owner.photoUrl,
                       ),
                     ),
-                    title: Text(user.name),
+                    title: Text(owner.name),
                     subtitle: Text("${post.readSpan} mins to read"),
                     trailing: IconButton(
                       onPressed: () {

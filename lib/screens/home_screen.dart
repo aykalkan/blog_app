@@ -1,7 +1,9 @@
 import 'package:blog_app/controllers/general_controller.dart';
+import 'package:blog_app/screens/welcome_screen.dart';
 import 'package:blog_app/services/posts_service.dart';
 import 'package:blog_app/screens/add_post_screen.dart';
 import 'package:blog_app/widgets/post_tile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +20,12 @@ class HomeScreen extends StatelessWidget {
           "Latest Feed",
         ),
         actions: [
+          IconButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Get.offAll(() => WelcomeScreen());
+              },
+              icon: Icon(Icons.logout)),
           FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {

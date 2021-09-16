@@ -1,6 +1,7 @@
 import 'package:blog_app/controllers/general_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
+import 'package:blog_app/models/user.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -15,13 +16,14 @@ class PostDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final GeneralController controller = Get.put(GeneralController());
 
-    Post post = Get.arguments;
+    Post post = Get.arguments[0];
+    User owner = Get.arguments[1];
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
-            Get.offAll(() => HomeScreen());
+            Get.back();
           },
         ),
         actions: [
@@ -74,11 +76,9 @@ class PostDetailScreen extends StatelessWidget {
                   ),
                   ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUetqWKxw_yKx_rG80j-rBwapn-dmxVedugw&usqp=CAU",
-                      ),
+                      backgroundImage: NetworkImage(owner.photoUrl),
                     ),
-                    title: Text(post.ownerId),
+                    title: Text(owner.name),
                     subtitle: Text(DateFormat.yMMMMd().format(
                         DateTime.fromMillisecondsSinceEpoch(
                             post.createdAt!.millisecondsSinceEpoch))),

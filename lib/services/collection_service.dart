@@ -60,6 +60,12 @@ class CollectionService {
     return snapshot;
   }
 
+  DocumentReference findDocRefById (String id)  {
+    final referance = _collection.doc(id);
+
+    return referance;
+  }
+
   Stream<QuerySnapshot<Object?>> getDocsStream() {
     return referance.snapshots();
   }

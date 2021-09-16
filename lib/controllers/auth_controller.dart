@@ -9,6 +9,7 @@ class AuthController extends GetxController {
   late Rx<User?> _firebaseUser;
 
   get user => _firebaseUser.value;
+  User? get currentFirebaseUser => _auth.currentUser;
 
   @override
   void onInit() {
