@@ -1,5 +1,6 @@
 class User {
   User({
+    this.id,
     required this.name,
     required this.email,
     this.photoUrl =
@@ -8,8 +9,8 @@ class User {
     this.favouritePosts,
   });
 
-  User.fromJson(Map<String, dynamic> data) {
-    print(data["posts"]);
+  User.fromJson(Map<String, dynamic> data, {String? id}) {
+    this.id = id;
     this.name = data["name"];
     this.email = data["email"];
     this.photoUrl = data["photoUrl"];
@@ -17,11 +18,12 @@ class User {
     this.favouritePosts = data["favouritePosts"].cast<String>();
   }
 
+  late final String? id;
   late final String name;
   late final String email;
   late final String photoUrl;
-  List<String>? posts;
-  List<String>? favouritePosts;
+  List<String>? posts = [];
+  List<String>? favouritePosts = [];
 
   Map<String, dynamic> toJson() {
     return {
