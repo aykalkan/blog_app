@@ -24,11 +24,13 @@ class UserService {
       String postId, AuthController controller) async {
     User? user = controller.userModel;
 
-    if (user!.favouritePosts!.contains(postId)) {
-      user.favouritePosts?.remove(postId);
-      controller.userFavourites.remove(postId);
+      if (user!.favouritePosts!.contains(postId)) {
+        user.favouritePosts?.remove(postId);
+        controller.userFavourites.remove(postId);
     } else {
-      user.favouritePosts?.add(postId);
+      if (user.favouritePosts == null)
+        user.favouritePosts = List.empty(growable: true);
+      user.favouritePosts!.add(postId);
       controller.userFavourites.add(postId);
     }
 

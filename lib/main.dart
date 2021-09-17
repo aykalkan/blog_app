@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.done
                 // ? WelcomeScreen()
-                ? Get.find<AuthController>().user == null
+                ? Get.find<AuthController>().firebaseUser == null
                     ? WelcomeScreen()
                     : HomeScreen()
                 : Center(

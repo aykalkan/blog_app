@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "180731053564-8navlva2pfrvajkeuq0683mvui55nud9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.turkticaret.blog_app",
+            "certificate_hash": "c0724bceb119710315e3cc84e5d684277ec53c7b"
+          }
+        },
+        {
           "client_id": "180731053564-n2bbokqo4jvfcf2c3l3vr56ib4785t5s.apps.googleusercontent.com",
           "client_type": 3
         }

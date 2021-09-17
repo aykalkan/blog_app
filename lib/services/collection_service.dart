@@ -55,7 +55,7 @@ class CollectionService {
     if (!snapshot.exists)
       throw FirebaseException(
         plugin: "collection-service",
-        message: "not-found",
+        message: "User-not-found-from-id",
       );
     return snapshot;
   }

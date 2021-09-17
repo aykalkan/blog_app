@@ -14,15 +14,17 @@ class User {
     this.name = data["name"];
     this.email = data["email"];
     this.photoUrl = data["photoUrl"];
-    this.posts = data["posts"].cast<String>();
-    this.favouritePosts = data["favouritePosts"].cast<String>();
+    this.posts = data["posts"] != null ? data["posts"].cast<String>() : [];
+    this.favouritePosts = data["favouritePosts"] != null
+        ? data["favouritePosts"]?.cast<String>()
+        : [];
   }
 
   late final String? id;
   late final String name;
   late final String email;
-  late final String photoUrl;
-  List<String>? posts = [];
+  late String photoUrl;
+  List<String>? posts = List.empty(growable: true);
   List<String>? favouritePosts = [];
 
   Map<String, dynamic> toJson() {

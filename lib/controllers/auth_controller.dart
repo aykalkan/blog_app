@@ -12,7 +12,7 @@ class AuthController extends GetxController {
   late Rx<u.User?> _userModel;
   late RxList<String> _userFavourites;
 
-  get user => _firebaseUser.value;
+  get firebaseUser => _firebaseUser.value;
   u.User? get userModel => _userModel.value;
   List<String> get userFavourites => _userFavourites;
 
@@ -27,15 +27,16 @@ class AuthController extends GetxController {
 
   @override
   void onReady() async {
-    getCurrentUserObject().then((value) {
-      if (value == null)
-        throw Exception("User not instantiated");
-      else {
-        _userModel = value.obs;
-        _userFavourites = RxList.from(userModel!.favouritePosts ?? []);
-      }
-      ;
-    });
+    if (firebaseUser != null) {
+      getCurrentUserObject().then((value) {
+        if (value == null)
+          throw Exception("User not instantiated");
+        else {
+          _userModel = value.obs;
+          _userFavourites = RxList.from(userModel!.favouritePosts ?? []);
+        }
+      });
+    }
     super.onReady();
   }
 
@@ -55,6 +56,8 @@ class AuthController extends GetxController {
         fUser.user!.uid,
         user.toJson(),
       );
+
+      getCurrentUserObject();
     } catch (e) {
       Get.snackbar("Sign up failed!", e.toString(),
           snackPosition: SnackPosition.BOTTOM);
@@ -69,6 +72,8 @@ class AuthController extends GetxController {
         password: password,
       );
 
+      getCurrentUserObject();
+
       print("--- User ${_auth.currentUser!.uid} connected---");
     } catch (e) {
       Get.snackbar("Login failed!", e.toString(),
@@ -77,7 +82,7 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<UserCredential> signInWithGoogle() async {
+  Future<void> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -91,21 +96,27 @@ class AuthController extends GetxController {
       idToken: googleAuth.idToken,
     );
 
-    final u.User user =
-        u.User(name: googleUser.displayName!, email: googleUser.email);
+    await _auth.signInWithCredential(credential);
 
-    _usersCollection.addWithId(
-      credential.idToken!,
+    final u.User user = u.User(
+      name: googleUser.displayName!,
+      email: googleUser.email,
+    );
+
+    if (googleUser.photoUrl != null) user.photoUrl = googleUser.photoUrl!;
+
+    await _usersCollection.addWithId(
+      firebaseUser.uid,
       user.toJson(),
     );
 
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    _userModel = user.obs;
+    _userFavourites = RxList.from(userModel!.favouritePosts ?? List.empty(growable: true));
   }
 
   Future<u.User?> getCurrentUserObject() async {
     try {
-      final uid = user.uid;
+      final uid = firebaseUser.uid;
       final snapshot = await _usersCollection.findWithId(uid);
       return u.User.fromJson(snapshot.data() as Map<String, dynamic>, id: uid);
     } catch (e) {
