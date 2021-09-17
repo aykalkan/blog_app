@@ -4,7 +4,6 @@ import 'package:blog_app/services/collection_service.dart';
 
 class UserService {
   final _usersCollection = CollectionService(Collection.users);
-  final _authController = AuthController();
 
   Future<User?> getUserObjectById(String userId) async {
     try {
@@ -21,12 +20,20 @@ class UserService {
     }
   }
 
-  Future<void> addToFavourites(String postId) async {
-    final referance =
-        _usersCollection.findDocRefById(_authController.currentFirebaseUser!.uid);
-    User? user = await _authController.getCurrentUserObject();
+  Future<void> changeFavouriteStatus(
+      String postId, AuthController controller) async {
+    User? user = controller.userModel;
 
-    user?.favouritePosts?.add(postId);
-    referance.update({"favouritePosts": user!.favouritePosts});
+    if (user!.favouritePosts!.contains(postId)) {
+      user.favouritePosts?.remove(postId);
+      controller.userFavourites.remove(postId);
+    } else {
+      user.favouritePosts?.add(postId);
+      controller.userFavourites.add(postId);
+    }
+
+    _usersCollection.referance
+        .doc(user.id)
+        .update({"favouritePosts": user.favouritePosts});
   }
 }

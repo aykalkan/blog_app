@@ -6,16 +6,32 @@ import 'package:blog_app/models/user.dart' as u;
 class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
   CollectionService _usersCollection = CollectionService(Collection.users);
+
   late Rx<User?> _firebaseUser;
+  late Rx<u.User?> _userModel;
+  late RxList<String> _userFavourites;
 
   get user => _firebaseUser.value;
-  User? get currentFirebaseUser => _auth.currentUser;
+  u.User? get userModel => _userModel.value;
+  List<String> get userFavourites => _userFavourites;
+
+  set userFavourites(List<String> value) => _userFavourites.value = value;
 
   @override
   void onInit() {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.authStateChanges());
     super.onInit();
+  }
+
+  @override
+  void onReady() async {
+    getCurrentUserObject().then((value) {
+      if (value == null) throw Exception("User not instantiated");
+      _userModel = value.obs;
+      _userFavourites = RxList.from(userModel!.favouritePosts ?? []);
+    });
+    super.onReady();
   }
 
   Future<void> createUser(String name, String email, String password) async {
@@ -56,12 +72,14 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<u.User?> getCurrentUserObject () async {
+  Future<u.User?> getCurrentUserObject() async {
     try {
       final uid = user.uid;
       final snapshot = await _usersCollection.findWithId(uid);
-      return u.User.fromJson(snapshot.data() as Map<String,dynamic>);
+      return u.User.fromJson(snapshot.data() as Map<String, dynamic>, id: uid);
     } catch (e) {
+      print(e);
+      rethrow;
     }
   }
 }

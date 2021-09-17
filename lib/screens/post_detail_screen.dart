@@ -1,8 +1,10 @@
+import 'package:blog_app/controllers/auth_controller.dart';
 import 'package:blog_app/controllers/general_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
 import 'package:blog_app/models/user.dart';
 import 'package:blog_app/screens/home_screen.dart';
+import 'package:blog_app/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,8 @@ class PostDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GeneralController controller = Get.put(GeneralController());
+    final AuthController controller = Get.put(AuthController());
+    final UserService userService = UserService();
 
     Post post = Get.arguments[0];
     User owner = Get.arguments[1];
@@ -29,11 +32,12 @@ class PostDetailScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              controller.isFavourite = !controller.isFavourite;
+              userService.changeFavouriteStatus(post.id!,controller);
             },
             icon: Obx(
               () => Icon(
-                controller.isFavourite ? Icons.bookmark : Icons.bookmark_border,
+                controller.userFavourites.contains(post.id) ?
+                Icons.bookmark : Icons.bookmark_border,
                 size: 30,
               ),
             ),

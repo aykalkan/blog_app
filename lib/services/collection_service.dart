@@ -11,7 +11,7 @@ class CollectionService {
   }
   late CollectionReference _collection;
 
-  get referance => _collection;
+  CollectionReference get referance => _collection;
 
   /// (Map<String, dynami> data) => New collection document with auto id
   /// Returns newly created DocumentReferance
