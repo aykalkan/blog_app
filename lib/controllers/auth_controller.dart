@@ -2,6 +2,7 @@ import 'package:blog_app/services/collection_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:blog_app/models/user.dart' as u;
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -27,9 +28,13 @@ class AuthController extends GetxController {
   @override
   void onReady() async {
     getCurrentUserObject().then((value) {
-      if (value == null) throw Exception("User not instantiated");
-      _userModel = value.obs;
-      _userFavourites = RxList.from(userModel!.favouritePosts ?? []);
+      if (value == null)
+        throw Exception("User not instantiated");
+      else {
+        _userModel = value.obs;
+        _userFavourites = RxList.from(userModel!.favouritePosts ?? []);
+      }
+      ;
     });
     super.onReady();
   }
@@ -70,6 +75,32 @@ class AuthController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
       rethrow;
     }
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    final u.User user =
+        u.User(name: googleUser.displayName!, email: googleUser.email);
+
+    _usersCollection.addWithId(
+      credential.idToken!,
+      user.toJson(),
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Future<u.User?> getCurrentUserObject() async {

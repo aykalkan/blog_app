@@ -1,3 +1,4 @@
+import 'package:blog_app/controllers/auth_controller.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/signup_screen.dart';
 import 'package:blog_app/widgets/chubby_elevated_button.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends GetWidget<AuthController> {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -42,9 +43,12 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             ChubbyElevatedButton(
-              "Sign in with Twitter",
-              icon: Icon(FontAwesomeIcons.twitter),
-              onPressed: () => Get.offAll(() => HomeScreen()),
+              "Sign in with Google",
+              icon: Icon(FontAwesomeIcons.google),
+              onPressed: () {
+                controller.signInWithGoogle();
+                Get.offAll(() => HomeScreen());
+              },
             ),
             SizedBox(height: 12),
             ChubbyElevatedButton(
