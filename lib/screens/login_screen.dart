@@ -45,8 +45,8 @@ class LoginScreen extends GetWidget<AuthController> {
             ChubbyElevatedButton(
               "Sign in with Google",
               icon: Icon(FontAwesomeIcons.google),
-              onPressed: () {
-                controller.signInWithGoogle();
+              onPressed: () async {
+                await controller.signInWithGoogle();
                 Get.offAll(() => HomeScreen());
               },
             ),
@@ -54,7 +54,10 @@ class LoginScreen extends GetWidget<AuthController> {
             ChubbyElevatedButton(
               "Sign in with Facebook",
               icon: Icon(FontAwesomeIcons.facebook),
-              onPressed: () => Get.offAll(() => HomeScreen()),
+              onPressed: () async {
+                await controller.signInWithFacebook();
+                Get.offAll(() => HomeScreen());
+              },
             ),
           ],
         ),

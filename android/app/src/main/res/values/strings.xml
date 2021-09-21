@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Blog App</string>
+  <string name="facebook_app_id">446912423327087</string>
+  <string name="fb_login_protocol_scheme">fb446912423327087</string>
+</resources>

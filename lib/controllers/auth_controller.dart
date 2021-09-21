@@ -1,5 +1,6 @@
 import 'package:blog_app/services/collection_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:blog_app/models/user.dart' as u;
 import 'package:google_sign_in/google_sign_in.dart';
@@ -12,7 +13,7 @@ class AuthController extends GetxController {
   late Rx<u.User?> _userModel;
   late RxList<String> _userFavourites;
 
-  get firebaseUser => _firebaseUser.value;
+  User? get firebaseUser => _firebaseUser.value;
   u.User? get userModel => _userModel.value;
   List<String> get userFavourites => _userFavourites;
 
@@ -106,7 +107,7 @@ class AuthController extends GetxController {
     if (googleUser.photoUrl != null) user.photoUrl = googleUser.photoUrl!;
 
     await _usersCollection.addWithId(
-      firebaseUser.uid,
+      firebaseUser!.uid,
       user.toJson(),
     );
 
@@ -114,9 +115,35 @@ class AuthController extends GetxController {
     _userFavourites = RxList.from(userModel!.favouritePosts ?? List.empty(growable: true));
   }
 
+  Future<void> signInWithFacebook() async {
+  // Trigger the sign-in flow
+  final LoginResult loginResult = await FacebookAuth.instance.login();
+
+  // Create a credential from the access token
+  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+  // Once signed in, return the UserCredential
+  await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+
+  final u.User user = u.User(
+      name: firebaseUser!.displayName!,
+      email: firebaseUser!.email!,
+    );
+
+    if (firebaseUser!.photoURL != null) user.photoUrl = firebaseUser!.photoURL!;
+
+    await _usersCollection.addWithId(
+      firebaseUser!.uid,
+      user.toJson(),
+    );
+
+    _userModel = user.obs;
+    _userFavourites = RxList.from(userModel!.favouritePosts ?? List.empty(growable: true));
+}
+
   Future<u.User?> getCurrentUserObject() async {
     try {
-      final uid = firebaseUser.uid;
+      final uid = firebaseUser!.uid;
       final snapshot = await _usersCollection.findWithId(uid);
       return u.User.fromJson(snapshot.data() as Map<String, dynamic>, id: uid);
     } catch (e) {
