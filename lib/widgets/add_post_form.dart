@@ -1,3 +1,4 @@
+import 'package:blog_app/controllers/add_post_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
 import 'package:blog_app/screens/home_screen.dart';
@@ -15,11 +16,14 @@ class AddPostForm extends StatelessWidget {
   final _titleController = TextEditingController();
   final _imageController = TextEditingController();
   final _contentController = TextEditingController();
+  final _imageFocus = FocusNode();
   Categories? _category;
   int _readSpan = 0;
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(AddPostController(_imageFocus));
+
     return Form(
       key: _formKey,
       child: Container(
@@ -34,19 +38,26 @@ class AddPostForm extends StatelessWidget {
             ),
             TextFormField(
               controller: _imageController,
+              focusNode: _imageFocus,
               decoration: InputDecoration(
                 labelText: "Image URL",
               ),
+              onChanged: (value) => _controller.imageUrl =value,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 8),
-              height: 200,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(),
-              ),
-              child: Center(
-                child: Text("NO IMAGE"),
+            Obx(
+              () => Container(
+                margin: EdgeInsets.symmetric(vertical: 8),
+                height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                ),
+                child: Center(
+                  child: _controller.imageBox,
+                ),
+                // child: Center(
+                //   child: _controller.imageUrl.isEmpty ? Text('no image') : Text('image var'),
+                // ),
               ),
             ),
             Row(
