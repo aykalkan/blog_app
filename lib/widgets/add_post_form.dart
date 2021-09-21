@@ -1,4 +1,3 @@
-import 'package:blog_app/controllers/auth_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
 import 'package:blog_app/screens/home_screen.dart';
@@ -13,11 +12,11 @@ import 'package:get/get.dart';
 class AddPostForm extends StatelessWidget {
   AddPostForm({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-  String _title = "";
-  String _imageUrl = "";
+  final _titleController = TextEditingController();
+  final _imageController = TextEditingController();
+  final _contentController = TextEditingController();
   Categories? _category;
   int _readSpan = 0;
-  String _content = "";
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +27,27 @@ class AddPostForm extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
+              controller: _titleController,
               decoration: InputDecoration(
                 labelText: "Title",
               ),
-              onChanged: (value) => _title = value,
             ),
             TextFormField(
+              controller: _imageController,
               decoration: InputDecoration(
                 labelText: "Image URL",
               ),
-              onChanged: (value) => _imageUrl = value,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 8),
+              height: 200,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border.all(),
+              ),
+              child: Center(
+                child: Text("NO IMAGE"),
+              ),
             ),
             Row(
               children: [
@@ -57,20 +67,20 @@ class AddPostForm extends StatelessWidget {
               ],
             ),
             TextFormField(
+              controller: _contentController,
               decoration: InputDecoration(
                 labelText: "Content",
               ),
               keyboardType: TextInputType.multiline,
-              onChanged: (value) => _content = value,
             ),
             ChubbyElevatedButton(
               "ADD POST",
               margin: EdgeInsets.only(top: 32),
               onPressed: () {
                 final post = Post(
-                  title: _title,
-                  content: _content,
-                  imageUrl: _imageUrl,
+                  title: _titleController.text,
+                  content: _contentController.text,
+                  imageUrl: _imageController.text,
                   ownerId: FirebaseAuth.instance.currentUser!.uid,
                   category: _category!,
                   readSpan: _readSpan,
