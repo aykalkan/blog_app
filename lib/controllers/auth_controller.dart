@@ -84,62 +84,74 @@ class AuthController extends GetxController {
   }
 
   Future<void> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-    await _auth.signInWithCredential(credential);
+      await _auth.signInWithCredential(credential);
 
-    final u.User user = u.User(
-      name: googleUser.displayName!,
-      email: googleUser.email,
-    );
+      final u.User user = u.User(
+        name: googleUser.displayName!,
+        email: googleUser.email,
+      );
 
-    if (googleUser.photoUrl != null) user.photoUrl = googleUser.photoUrl!;
+      if (googleUser.photoUrl != null) user.photoUrl = googleUser.photoUrl!;
 
-    await _usersCollection.addWithId(
-      firebaseUser!.uid,
-      user.toJson(),
-    );
+      await _usersCollection.addWithId(
+        firebaseUser!.uid,
+        user.toJson(),
+      );
 
-    _userModel = user.obs;
-    _userFavourites = RxList.from(userModel!.favouritePosts ?? List.empty(growable: true));
+      _userModel = user.obs;
+      _userFavourites =
+          RxList.from(userModel!.favouritePosts ?? List.empty(growable: true));
+    } catch (e) {
+      print("Google sign-in error. Error code: $e");
+    }
   }
 
   Future<void> signInWithFacebook() async {
-  // Trigger the sign-in flow
-  final LoginResult loginResult = await FacebookAuth.instance.login();
+    try {
+      // Trigger the sign-in flow
+      final LoginResult loginResult = await FacebookAuth.instance.login();
 
-  // Create a credential from the access token
-  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      // Create a credential from the access token
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
-  // Once signed in, return the UserCredential
-  await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+      // Once signed in, return the UserCredential
+      await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
 
-  final u.User user = u.User(
-      name: firebaseUser!.displayName!,
-      email: firebaseUser!.email!,
-    );
+      final u.User user = u.User(
+        name: firebaseUser!.displayName!,
+        email: firebaseUser!.email!,
+      );
 
-    if (firebaseUser!.photoURL != null) user.photoUrl = firebaseUser!.photoURL!;
+      if (firebaseUser!.photoURL != null)
+        user.photoUrl = firebaseUser!.photoURL!;
 
-    await _usersCollection.addWithId(
-      firebaseUser!.uid,
-      user.toJson(),
-    );
+      await _usersCollection.addWithId(
+        firebaseUser!.uid,
+        user.toJson(),
+      );
 
-    _userModel = user.obs;
-    _userFavourites = RxList.from(userModel!.favouritePosts ?? List.empty(growable: true));
-}
+      _userModel = user.obs;
+      _userFavourites =
+          RxList.from(userModel!.favouritePosts ?? List.empty(growable: true));
+    } catch (e) {
+      print("Facebook sign-in error. Error code: $e");
+    }
+  }
 
   Future<u.User?> getCurrentUserObject() async {
     try {
