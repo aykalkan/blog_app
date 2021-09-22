@@ -34,7 +34,11 @@ class AddPostController extends GetxController {
     }
   }
 
-  Image getImage() {
-    return Image.network(imageUrl);
+  Widget getImage() {
+    return Image.network(
+      imageUrl,
+      fit: BoxFit.cover,
+      errorBuilder: (_, error, __) => Text("INVALID IMAGE URL!!!"),
+    );
   }
 }
