@@ -75,9 +75,12 @@ class AddPostController extends GetxController {
     );
 
     if (imageFile != null) {
-      setImageBox(file: File(imageFile.path));
+      //setImageBox(file: File(imageFile.path));
+      isWaiting = true;
       imageUrlController.text =
           await uploadFile(imageFile.path, imageFile.name);
+      isWaiting = false;
+      imageFocusNode.notifyListeners();
     }
   }
 

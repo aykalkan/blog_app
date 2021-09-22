@@ -68,7 +68,7 @@ class AddPostForm extends StatelessWidget {
                   border: Border.all(),
                 ),
                 child: Center(
-                  child: _controller.imageBox,
+                  child: _controller.isWaiting ? CircularProgressIndicator() : _controller.imageBox,
                 ),
               ),
             ),
