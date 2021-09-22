@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -19,6 +19,7 @@ class AddPostController extends GetxController {
 
   final _imageUrl = "".obs;
   final Rx<Widget> _imageBox = Rx(Text("NO IMAGE"));
+  final _isWaiting = false.obs;
 
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FocusNode imageFocusNode;
@@ -26,9 +27,11 @@ class AddPostController extends GetxController {
 
   String get imageUrl => _imageUrl.value;
   Widget get imageBox => _imageBox.value;
+  bool get isWaiting => _isWaiting.value;
 
   set imageUrl(value) => _imageUrl.value = value;
   set imageBox(Widget value) => _imageBox.value = value;
+  set isWaiting(value) => _isWaiting.value = value;
 
   void setImageBox({File? file}) {
     if (file != null) {
@@ -45,6 +48,20 @@ class AddPostController extends GetxController {
       imageUrl,
       fit: BoxFit.cover,
       errorBuilder: (_, error, __) => Text("INVALID IMAGE URL!!!"),
+      loadingBuilder: (BuildContext context, Widget child,
+          ImageChunkEvent? loadingProgress) {
+        if (loadingProgress == null) {
+          return child;
+        }
+        return Center(
+          child: CircularProgressIndicator(
+            value: loadingProgress.expectedTotalBytes != null
+                ? loadingProgress.cumulativeBytesLoaded /
+                    loadingProgress.expectedTotalBytes!
+                : null,
+          ),
+        );
+      },
     );
   }
 
