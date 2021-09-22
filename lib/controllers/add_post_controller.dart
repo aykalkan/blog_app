@@ -74,8 +74,7 @@ class AddPostController extends GetxController {
           .child(fileName)
           .putFile(file);
 
-      print("--- ${_storage.ref().fullPath} +++ ${uTask.ref.fullPath}");
-      return uTask.ref.fullPath;
+      return uTask.ref.getDownloadURL();
     } on FirebaseException catch (e) {
       print("Photo upload error. Error message: $e");
       return "Photo upload error";
