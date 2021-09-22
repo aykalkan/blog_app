@@ -22,7 +22,7 @@ class AddPostForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(AddPostController(_imageFocus));
+    final _controller = Get.put(AddPostController(_imageFocus,_imageController));
 
     return Form(
       key: _formKey,
@@ -46,7 +46,6 @@ class AddPostForm extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: "Image URL",
                     ),
-                    onChanged: (value) => _controller.imageUrl = value,
                   ),
                 ),
                 Expanded(
