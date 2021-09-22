@@ -36,13 +36,29 @@ class AddPostForm extends StatelessWidget {
                 labelText: "Title",
               ),
             ),
-            TextFormField(
-              controller: _imageController,
-              focusNode: _imageFocus,
-              decoration: InputDecoration(
-                labelText: "Image URL",
-              ),
-              onChanged: (value) => _controller.imageUrl =value,
+            Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: TextFormField(
+                    controller: _imageController,
+                    focusNode: _imageFocus,
+                    decoration: InputDecoration(
+                      labelText: "Image URL",
+                    ),
+                    onChanged: (value) => _controller.imageUrl = value,
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                    child:  Icon(Icons.camera_alt_outlined),
+                    onPressed: () {
+                      _controller.takeImage();
+                    },
+                  ),
+                ),
+              ],
             ),
             Obx(
               () => Container(
@@ -55,9 +71,6 @@ class AddPostForm extends StatelessWidget {
                 child: Center(
                   child: _controller.imageBox,
                 ),
-                // child: Center(
-                //   child: _controller.imageUrl.isEmpty ? Text('no image') : Text('image var'),
-                // ),
               ),
             ),
             Row(

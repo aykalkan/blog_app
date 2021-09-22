@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddPostController extends GetxController {
   AddPostController(FocusNode imageFocusNode) {
@@ -39,6 +40,15 @@ class AddPostController extends GetxController {
       imageUrl,
       fit: BoxFit.cover,
       errorBuilder: (_, error, __) => Text("INVALID IMAGE URL!!!"),
+    );
+  }
+
+  void takeImage() async {
+    ImagePicker picker = ImagePicker();
+
+    final XFile? imageFile = await picker.pickImage(
+      source: ImageSource.camera,
+      maxWidth: 2048,
     );
   }
 }
