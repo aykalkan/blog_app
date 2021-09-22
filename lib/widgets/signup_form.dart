@@ -29,6 +29,7 @@ class SignupForm extends GetWidget<AuthController> {
               decoration: InputDecoration(
                 labelText: "Email",
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
             TextFormField(
               controller: _passwordController,
@@ -42,14 +43,13 @@ class SignupForm extends GetWidget<AuthController> {
               margin: EdgeInsets.only(top: 32),
               onPressed: () async {
                 try {
-                await controller.createUser(
-                  _nameController.text,
-                  _emailController.text,
-                  _passwordController.text,
-                );
-                Get.offAll(() => HomeScreen());
-                } catch (e) {
-                }
+                  await controller.createUser(
+                    _nameController.text,
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+                  Get.offAll(() => HomeScreen());
+                } catch (e) {}
               },
             ),
           ],

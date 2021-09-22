@@ -23,6 +23,7 @@ class LoginForm extends GetWidget<AuthController> {
               decoration: InputDecoration(
                 labelText: "Email",
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
             TextFormField(
               controller: _passwordController,

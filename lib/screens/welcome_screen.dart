@@ -14,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           Image.network(
-            "https://firebasestorage.googleapis.com/v0/b/com-turkticaret-blogapp.appspot.com/o/welcome_1.png?alt=media&token=5078a49d-63b0-47ce-a477-cd4f47bcebba",
+            "https://firebasestorage.googleapis.com/v0/b/com-turkticaret-blogapp.appspot.com/o/Mask%20Group%205.png?alt=media&token=ebd838b2-4dfb-482a-bb03-7a0d7604a449",
             width: double.infinity,
             fit: BoxFit.fitWidth,
           ),
