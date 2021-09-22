@@ -12,10 +12,7 @@ class PostsService {
       _collectionService.getDocsStream();
 
   void initPostsListener(GeneralController controller) {
-    referance
-    .orderBy("createdAt", descending: true)
-    .snapshots()
-    .listen(
+    referance.orderBy("createdAt", descending: false).snapshots().listen(
       (event) {
         event.docChanges.forEach((element) async {
           final data = await element.doc.reference.get();
@@ -33,6 +30,9 @@ class PostsService {
               createdAt: data["createdAt"],
             );
             controller.posts.add(post);
+            controller.posts.sort((a,b) {
+              return b.createdAt!.compareTo(a.createdAt!);
+            });
             print("Post created with id ${post.id}");
           }
           if (element.type == DocumentChangeType.removed) {
