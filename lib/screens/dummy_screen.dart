@@ -1,4 +1,4 @@
-import 'package:blog_app/controllers/general_controller.dart';
+import 'package:blog_app/controllers/posts_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
 import 'package:blog_app/services/collection_service.dart';
@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 class DummyScreen extends StatelessWidget {
   DummyScreen({Key? key}) : super(key: key);
 
-  final _controller = Get.put(GeneralController());
+  final _controller = Get.put(PostsController());
 
   @override
   Widget build(BuildContext context) {

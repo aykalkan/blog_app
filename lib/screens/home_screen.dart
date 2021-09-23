@@ -1,4 +1,4 @@
-import 'package:blog_app/controllers/general_controller.dart';
+import 'package:blog_app/controllers/posts_controller.dart';
 import 'package:blog_app/screens/welcome_screen.dart';
 import 'package:blog_app/services/posts_service.dart';
 import 'package:blog_app/screens/add_post_screen.dart';
@@ -11,7 +11,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final _controller = Get.put(GeneralController());
+  final _controller = Get.put(PostsController());
 
   @override
   Widget build(BuildContext context) {

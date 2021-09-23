@@ -1,4 +1,4 @@
-import 'package:blog_app/controllers/general_controller.dart';
+import 'package:blog_app/controllers/posts_controller.dart';
 import 'package:blog_app/models/post.dart';
 import 'package:blog_app/services/collection_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +11,7 @@ class PostsService {
   Stream<QuerySnapshot<Object?>> get docsStream =>
       _collectionService.getDocsStream();
 
-  void initPostsListener(GeneralController controller) {
+  void initPostsListener(PostsController controller) {
     referance.orderBy("createdAt", descending: false).snapshots().listen(
       (event) {
         event.docChanges.forEach((element) async {

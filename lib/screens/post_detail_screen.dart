@@ -1,5 +1,5 @@
 import 'package:blog_app/controllers/auth_controller.dart';
-import 'package:blog_app/controllers/general_controller.dart';
+import 'package:blog_app/controllers/posts_controller.dart';
 import 'package:blog_app/models/categories.dart';
 import 'package:blog_app/models/post.dart';
 import 'package:blog_app/models/user.dart';
